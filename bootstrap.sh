@@ -1,4 +1,5 @@
 #!/bin/bash
+# massa.service
 systemctl stop massa
 echo "applying massa bootstrap fix"
 echo '[bootstrap]
