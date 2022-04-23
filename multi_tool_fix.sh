@@ -3,49 +3,6 @@
 function="install"
 source="false"
 
-# Options
-. <(wget -qO- https://raw.githubusercontent.com/Kallen-c/utils/main/colors.sh) --
-option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
-while test $# -gt 0; do
-	case "$1" in
-	-h|--help)
-		. <(wget -qO- https://raw.githubusercontent.com/Kallen-c/utils/main/logo.sh)
-		echo
-		echo -e "${C_LGn}Functionality${RES}: the script performs many actions related to a Massa node"
-		echo
-		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
-		echo
-		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help         show the help page"
-		echo -e "  -op, --open-ports  open required ports"
-		echo -e "  -s, --source       install the node using a source code"
-		echo
-		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
-		echo
-		echo -e "${C_LGn}Useful URLs${RES}:"
-		echo -e "https://github.com/Kallen-c/Massa/blob/main/multi_tool.sh - script URL"
-		echo -e "https://t.me/letskynode — node Community"
-		echo
-		return 0
-		;;
-	-op|--open-ports)
-		function="open_ports"
-		shift
-		;;
-	-s|--source)
-		function="install_source"
-		shift
-		;;
-	-un|--uninstall)
-		function="uninstall"
-		shift
-		;;
-	*|--)
-		break
-		;;
-	esac
-done
-
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
 open_ports() {
